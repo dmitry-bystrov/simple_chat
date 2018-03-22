@@ -70,6 +70,18 @@ public class ClientHandler implements ServerAPI, ConnectionSettings {
                                 sendServiceMessage("Неверные параметры авторизации");
                             }
                         }
+                        if (message.startsWith(AUTH_REGISTER)){
+                            String[] loginPass = message.split("\\s");
+                            if (loginPass.length == 4) {
+                                if (server.getAuthService().setNicknameByLoginPass(loginPass[1], loginPass[2], loginPass[3])) {
+                                    sendServiceMessage("Учетная запись успешно зарегистрирована");
+                                } else {
+                                    sendServiceMessage("Не удалось зарегистрировать учетную запись\nВозможно указанные имя пользователя или логин уже используются");
+                                }
+                            } else {
+                                sendServiceMessage("Неверные параметры авторизации");
+                            }
+                        }
                     }
 
                     while (true){ // цикл получения сообщений

@@ -119,4 +119,8 @@ public class ClientConnection implements ConnectionSettings, ServerAPI {
         Platform.runLater(() -> controller.userMessage(fromUser, toUser, message_text, personal));
     }
 
+    public void register(String nickname, String login, String pass) {
+        if (socket == null || socket.isClosed()) openConnection();
+        sendMessage(AUTH_REGISTER + " " + nickname + " " + login + " " + pass);
+    }
 }

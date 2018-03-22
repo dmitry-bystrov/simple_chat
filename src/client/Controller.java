@@ -4,12 +4,12 @@ import common.ServerAPI;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -31,22 +31,19 @@ public class Controller implements Initializable {
 
     @FXML
     public TextFlow textFlow;
-    @FXML
     public TextField textField;
-    @FXML
     public ScrollPane scrollPane;
-    @FXML
     public TextField loginField;
-    @FXML
     public PasswordField passwordField;
-    @FXML
     public VBox loginPassBox;
-    @FXML
     public BorderPane sendMessageBox;
-    @FXML
     public TilePane smilesPane;
-    @FXML
     public TextFlow userList;
+    public HBox nicknameBox;
+    public TextField nicknameField;
+    public Button loginButton;
+    public Button registerButton;
+    public Label registerLink;
 
     public Controller() {
         dateFormat = new SimpleDateFormat("hh:mm");
@@ -59,7 +56,7 @@ public class Controller implements Initializable {
         Date date = new Date();
         Text messageHeaderStart = new Text("["+ dateFormat.format(date) + "] ");
         Text messageHeaderNickname = new Text(fromUser);
-        Text messageHeaderEnd = new Text(personal?" > " + toUser:"" + ": ");
+        Text messageHeaderEnd = new Text((personal?" > " + toUser:"") + ": ");
 
         messageHeaderStart.setId("messageHeader");
         messageHeaderEnd.setId("messageHeader");
@@ -133,6 +130,10 @@ public class Controller implements Initializable {
         sendMessageBox.managedProperty().bind(sendMessageBox.visibleProperty());
         smilesPane.managedProperty().bind(smilesPane.visibleProperty());
         userList.managedProperty().bind(userList.visibleProperty());
+        nicknameBox.managedProperty().bind(nicknameBox.visibleProperty());
+        registerButton.managedProperty().bind(registerButton.visibleProperty());
+        loginButton.managedProperty().bind(loginButton.visibleProperty());
+        registerLink.managedProperty().bind(registerLink.visibleProperty());
 
         clientConnection = new ClientConnection(this);
         clientConnection.openConnection();
@@ -175,6 +176,11 @@ public class Controller implements Initializable {
             smilesPane.setVisible(false);
             userList.setVisible(false);
             loginPassBox.setVisible(true);
+
+            nicknameBox.setVisible(false);
+            registerButton.setVisible(false);
+            loginButton.setVisible(true);
+            registerLink.setVisible(true);
         }
     }
 
@@ -203,5 +209,25 @@ public class Controller implements Initializable {
         } else {
             userList.setVisible(true);
         }
+    }
+
+    public void registerUser(ActionEvent actionEvent) {
+        if (nicknameField.getText() != null && loginField.getText() != null && passwordField.getText() != null){
+            clientConnection.register(nicknameField.getText(), loginField.getText(), passwordField.getText());
+        }
+
+        nicknameBox.setVisible(false);
+        registerButton.setVisible(false);
+        loginButton.setVisible(true);
+        registerLink.setVisible(true);
+    }
+
+    public void registerSwitch(MouseEvent mouseEvent) {
+        if (mouseEvent.getButton() != MouseButton.PRIMARY) return;
+
+        nicknameBox.setVisible(true);
+        registerButton.setVisible(true);
+        loginButton.setVisible(false);
+        registerLink.setVisible(false);
     }
 }

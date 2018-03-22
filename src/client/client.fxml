@@ -15,11 +15,21 @@
 <BorderPane styleClass="background" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controller">
     <top>
         <VBox fx:id="loginPassBox" alignment="CENTER" spacing="15">
-            <Label text="Логин"/>
-            <TextField fx:id="loginField" onAction="#sendMessage" />
-            <Label text="Пароль"/>
-            <PasswordField fx:id="passwordField" onAction="#sendMessage" />
-            <Button onAction="#sendMessage" text="Войти в чат" />
+            <HBox fx:id="nicknameBox" alignment="CENTER" spacing="15">
+                <Label prefWidth="80" text="Имя:"/>
+                <TextField prefWidth="220" fx:id="nicknameField"/>
+            </HBox>
+            <HBox alignment="CENTER" spacing="15">
+                <Label prefWidth="80" text="Логин:"/>
+                <TextField prefWidth="220" fx:id="loginField"/>
+            </HBox>
+            <HBox alignment="CENTER" spacing="15">
+                <Label prefWidth="80" text="Пароль:"/>
+                <PasswordField prefWidth="220" fx:id="passwordField" onAction="#sendMessage" />
+            </HBox>
+            <Button fx:id="loginButton" onAction="#sendMessage" text="Войти в чат" />
+            <Button fx:id="registerButton" onAction="#registerUser" text="Регистрация" />
+            <Label fx:id="registerLink" onMouseClicked="#registerSwitch" text="Регистрация"/>
         </VBox>
     </top>
     <right>

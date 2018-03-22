@@ -12,6 +12,7 @@
 
 #smileButton:hover {
     -fx-background-color: rgb(250,100,100);
+    -fx-cursor: hand;
 }
 
 #usersButton {
@@ -24,6 +25,7 @@
 
 #usersButton:hover {
     -fx-background-color: rgb(250,100,100);
+    -fx-cursor: hand;
 }
 
 #userList {
@@ -37,6 +39,16 @@
     -fx-padding: 40;
     -fx-font-size: 14pt;
     -fx-background-color: white;
+}
+
+#registerLink {
+    -fx-font-size: 10pt;
+    -fx-text-fill: rgb(80,20,0);
+}
+
+#registerLink:hover {
+    -fx-underline: true;
+    -fx-cursor: hand;
 }
 
 #serviceMessage {
@@ -53,6 +65,7 @@
 
 #userNickname:hover {
     -fx-underline: true;
+    -fx-cursor: hand;
 }
 
 #personalMessage {
@@ -81,6 +94,7 @@
 
 .button:hover {
     -fx-text-fill: rgb(250,100,100);
+    -fx-cursor: hand;
 }
 
 TextFlow {

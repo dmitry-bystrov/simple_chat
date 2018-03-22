@@ -9,8 +9,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    public static final int START_WIDTH = 425;
-    public static final int START_HEIGHT = 680;
+    public static final int START_WIDTH = 830;
+    public static final int START_HEIGHT = 600;
     public static final String WINDOW_TITLE = "Chat client";
 
     @Override
