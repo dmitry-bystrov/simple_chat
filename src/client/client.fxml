@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.PasswordField?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane styleClass="background" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controller">
+    <top>
+        <VBox fx:id="loginPassBox" alignment="CENTER" spacing="15">
+            <Label text="Логин"/>
+            <TextField fx:id="loginField" onAction="#sendMessage" />
+            <Label text="Пароль"/>
+            <PasswordField fx:id="passwordField" onAction="#sendMessage" />
+            <Button onAction="#sendMessage" text="Войти в чат" />
+        </VBox>
+    </top>
+    <right>
+        <TextFlow fx:id="userList" prefWidth="130" />
+    </right>
+    <center>
+       <ScrollPane fx:id="scrollPane">
+           <TextFlow fx:id="textFlow" />
+       </ScrollPane>
+   </center>
+   <bottom>
+       <BorderPane fx:id="sendMessageBox">
+           <top>
+               <TilePane fx:id="smilesPane" vgap="5" hgap="5">
+               </TilePane>
+           </top>
+           <center>
+               <TextField fx:id="textField" onAction="#sendMessage" />
+           </center>
+           <right>
+               <HBox>
+                   <Button onAction="#sendMessage" text="▲" />
+                   <Button fx:id="smileButton" onAction="#showSmiles" text="▲" />
+                   <Button fx:id="usersButton" onAction="#showUserList" text="▲" />
+               </HBox>
+           </right>
+       </BorderPane>
+   </bottom>
+</BorderPane>
